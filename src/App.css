@@ -1,0 +1,6 @@
+.appContainer {
+  position: relative; /* Needed for absolute positioning of children */
+  height: 100vh; /* Full height of the viewport */
+  padding: 1rem; /* Space for content */
+  /* Other styles for your app's layout */
+}
