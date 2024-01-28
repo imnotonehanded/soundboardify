@@ -1,6 +1,6 @@
-import React, { Component, ChangeEvent } from "react";
-import { Card, Modal, Row, Col, Button } from "react-bootstrap";
-
+import { Component, ChangeEvent } from "react";
+import { Card, Modal, Row, Col } from "react-bootstrap";
+import "./GridComponent.css";
 interface GridState {
   showModal: boolean;
   selectedCard: null | number;
@@ -39,21 +39,25 @@ class GridComponent extends Component<unknown, GridState> {
   };
 
   render() {
-    const { showModal, selectedCard, cardItemNames } = this.state;
+    const { showModal, cardItemNames } = this.state;
 
     // Create an 8x8 grid of cards
     const gridItems = Array.from({ length: 8 }, (_, rowIndex) => (
-      <Row key={rowIndex}>
+      <Row className="mb-3" key={rowIndex}>
         {Array.from({ length: 8 }, (_, colIndex) => {
           const cardIndex = rowIndex * 8 + colIndex;
           return (
-            <Col xs={3} key={colIndex}>
+            <Col className="grid-item" xs={1} key={colIndex}>
               <div
                 className="card-container"
                 onClick={() => this.handleCardClick(cardIndex)}
               >
                 <Card className="square-card">
                   <Card.Body>
+                    <Card.Title>
+                      {String.fromCharCode(65 + rowIndex)}
+                      {colIndex + 1}
+                    </Card.Title>
                     {cardItemNames[cardIndex] || "Click to add file"}
                   </Card.Body>
                 </Card>
