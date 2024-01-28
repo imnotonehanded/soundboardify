@@ -1,12 +1,10 @@
 //import ListGroup from "./components/ListGroup";
 // import PromptModal from "./components/PromptModal";
-import FloatingButton from "./components/FloatingButton";
-import ParentComponent from "./components/ParentComponent";
+import GridComponent from "./components/GridComponent";
 function App() {
   return (
-    <div>
-      <FloatingButton />
-      <ParentComponent />
+    <div className="container mt-5">
+      <GridComponent />
     </div>
   );
 }
