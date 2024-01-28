@@ -1,19 +1,25 @@
 import { Component, ChangeEvent } from "react";
 import { Card, Modal, Row, Col, Form, Container } from "react-bootstrap";
+import AudioCard from "../temp/AudioCard";
 
 interface GridState {
   showModal: boolean;
   selectedCard: null | number;
-  cardItemNames: string[];
+  cards: AudioCard[];
 }
-
+interface AudioCard {
+  cordinate: string; // A5
+  translation: number; // 75 (on the launchpad)
+  file: File | null; // audio file
+  
+}
 class GridComponent extends Component<unknown, GridState> {
   constructor(props: unknown) {
     super(props);
     this.state = {
       showModal: false,
       selectedCard: null,
-      cardItemNames: Array.from({ length: 64 }, () => ""),
+      cards: Array.from({ length: 64 }, () => {cordinate, translation, file} : AudioCard),
     };
   }
 
