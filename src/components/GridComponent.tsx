@@ -1,5 +1,5 @@
 import { Component, ChangeEvent } from "react";
-import { Card, Modal, Row, Col } from "react-bootstrap";
+import { Card, Modal, Row, Col, Form } from "react-bootstrap";
 import "./GridComponent.css";
 interface GridState {
   showModal: boolean;
@@ -79,7 +79,14 @@ class GridComponent extends Component<unknown, GridState> {
             <Modal.Title>Select a File</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <input type="file" onChange={this.handleFileSelect} />
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Import an audio file</Form.Label>
+              <Form.Control
+                type="file"
+                accept="audio/*"
+                onChange={this.handleFileSelect}
+              />
+            </Form.Group>
           </Modal.Body>
         </Modal>
       </div>

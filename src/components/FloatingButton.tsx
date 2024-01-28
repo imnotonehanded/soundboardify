@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import AudioCard from "./AudioCard";
 
 function FloatingButton() {
   let currentFile: FileList | null;
@@ -9,9 +8,6 @@ function FloatingButton() {
     if (!currentFile || currentFile.length < 1) {
       console.log("invalid");
     } else {
-      {
-        <AudioCard />;
-      }
       console.log(currentFile[0].name);
     }
   };
@@ -30,7 +26,7 @@ function FloatingButton() {
         size="lg"
         onClick={handleShow}
       >
-        Create a new bind
+        Import a folder
       </Button>
 
       <Modal show={show} onHide={handleClose}>
