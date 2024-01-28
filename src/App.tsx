@@ -1,11 +1,12 @@
 //import ListGroup from "./components/ListGroup";
-// import AudioCard from "./components/AudioCard";
 // import PromptModal from "./components/PromptModal";
 import FloatingButton from "./components/FloatingButton";
+import ParentComponent from "./components/ParentComponent";
 function App() {
   return (
     <div>
       <FloatingButton />
+      <ParentComponent />
     </div>
   );
 }

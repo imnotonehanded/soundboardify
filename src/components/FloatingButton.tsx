@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
+import AudioCard from "./AudioCard";
 
 function FloatingButton() {
   let currentFile: FileList | null;
   const [show, setShow] = useState(false);
-
   const handleNext = () => {
     if (!currentFile || currentFile.length < 1) {
       console.log("invalid");
+    } else {
+      {
+        <AudioCard />;
+      }
+      console.log(currentFile[0].name);
     }
   };
   const handleClose = () => setShow(false);
@@ -15,8 +20,17 @@ function FloatingButton() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+      <Button
+        variant="primary"
+        style={{
+          position: "fixed",
+          left: "20px",
+          bottom: "20px",
+        }}
+        size="lg"
+        onClick={handleShow}
+      >
+        Create a new bind
       </Button>
 
       <Modal show={show} onHide={handleClose}>
