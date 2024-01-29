@@ -22,6 +22,8 @@ interface GridState {
   showModal: boolean;
   selectedCard: null | number;
   cards: AudioCard[];
+  currentAudio: HTMLAudioElement | null;
+  currentAudioName: string;
 }
 interface AudioCard {
   cordinate: string; // A5
@@ -36,6 +38,8 @@ class GridComponent extends Component<unknown, GridState> {
       folderModal: false,
       showModal: false,
       selectedCard: null,
+      currentAudio: null,
+      currentAudioName: "",
       cards: Array.from({ length: 64 }, (_, i) => ({
         cordinate: `${String.fromCharCode(65 + Math.floor(i / 8))}${
           (i % 8) + 1
@@ -59,18 +63,28 @@ class GridComponent extends Component<unknown, GridState> {
           event.data[2] == 0 &&
           this.state.cards[translation.indexOf(event.data[1])].file !== null
         ) {
-          console.log(event);
-          console.log(
-            this.state.cards[translation.indexOf(event.data[1])].file?.name
-          );
           URL.createObjectURL(
             this.state.cards[translation.indexOf(event.data[1])].file as Blob
           );
           const file =
             this.state.cards[translation.indexOf(event.data[1])].file;
           if (file) {
-            const audio = new Audio(URL.createObjectURL(file));
-            audio.play();
+            if (this.state.currentAudio) {
+              this.state.currentAudio.pause();
+            }
+            if (this.state.currentAudioName != file.name) {
+              const audio = new Audio(URL.createObjectURL(file));
+              audio.play();
+              this.setState({
+                currentAudio: audio,
+                currentAudioName: file.name,
+              });
+            } else {
+              this.setState({
+                currentAudio: null,
+                currentAudioName: "",
+              });
+            }
           }
         }
       }
@@ -99,7 +113,6 @@ class GridComponent extends Component<unknown, GridState> {
         cards: newCard,
         selectedCard: null,
       });
-      console.log(cards);
     }
   };
 
